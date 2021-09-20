@@ -2,9 +2,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:perguntados/pages/pages.dart';
 
-class QuestionPage extends StatelessWidget {
+class QuestionPage extends StatefulWidget {
   const QuestionPage({Key? key}) : super(key: key);
 
+  @override
+  State<QuestionPage> createState() => _QuestionPageState();
+}
+
+class _QuestionPageState extends State<QuestionPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,6 +66,8 @@ class QuestionPage extends StatelessWidget {
   }
 
   Container responseBox() {
+    bool isChecked = false;
+
     return Container(
       decoration: BoxDecoration(
           border: Border.all(color: Colors.grey),
@@ -71,8 +78,12 @@ class QuestionPage extends StatelessWidget {
         children: [
           Row(children: [
             Checkbox(
-              value: true,
-              onChanged: null,
+              value: isChecked,
+              onChanged: (bool? value) {
+                setState(() {
+                  isChecked = value!;
+                });
+              },
             ),
             Text('Pablo Escobar')
           ])
