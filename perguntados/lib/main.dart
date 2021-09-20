@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Perguntados',
       theme: ThemeData(primaryColor: Color.fromRGBO(117, 140, 255, 1)),
-      home: const ResultPage(),
+      home: const RegisterPage(),
     );
   }
 }
