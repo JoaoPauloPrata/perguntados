@@ -42,7 +42,7 @@ class StartPage extends StatelessWidget {
                               'Responda 10 perguntas e veja sua pontuação no fim!',
                               style: TextStyle(fontSize: 12))),
                       SizedBox(height: 30),
-                      startButton()
+                      startButton(context)
                     ],
                   ))),
         ))
@@ -50,7 +50,7 @@ class StartPage extends StatelessWidget {
     );
   }
 
-  Container startButton() {
+  Container startButton(context) {
     return Container(
         height: 55,
         child: ElevatedButton(
@@ -59,7 +59,10 @@ class StartPage extends StatelessWidget {
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(32)),
               textStyle: TextStyle(fontSize: 20)),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => QuestionPage()));
+          },
           child: Text('Start!'),
         ));
   }

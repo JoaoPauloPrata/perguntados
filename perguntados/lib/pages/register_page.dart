@@ -11,10 +11,6 @@ class RegisterPage extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        leading: Padding(
-          padding: EdgeInsets.all(16),
-          child: Icon(Icons.arrow_back_ios),
-        ),
         title: const Text('Cadastrar'),
         centerTitle: true,
         backgroundColor: defaultColor,

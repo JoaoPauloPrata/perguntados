@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:perguntados/pages/pages.dart';
+import 'package:perguntados/pages/start_page.dart';
 
 const Color defaultColor = Color.fromRGBO(117, 140, 255, 1);
 
@@ -31,15 +33,15 @@ class LoginPage extends StatelessWidget {
                   SizedBox(
                     height: 350,
                   ),
-                  registerButton(),
+                  registerButton(context),
                   SizedBox(height: 10),
-                  loginButton()
+                  loginButton(context)
                 ],
               ))),
     );
   }
 
-  Container registerButton() {
+  Container registerButton(context) {
     return Container(
         height: 48,
         child: ElevatedButton(
@@ -50,12 +52,15 @@ class LoginPage extends StatelessWidget {
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(24)),
               textStyle: TextStyle(fontSize: 20)),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => RegisterPage()));
+          },
           child: const Text('Cadastrar'),
         ));
   }
 
-  Container loginButton() {
+  Container loginButton(context) {
     return Container(
         height: 48,
         child: ElevatedButton(
@@ -64,7 +69,10 @@ class LoginPage extends StatelessWidget {
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(24)),
               textStyle: TextStyle(fontSize: 20)),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => StartPage()));
+          },
           child: const Text('Entrar'),
         ));
   }

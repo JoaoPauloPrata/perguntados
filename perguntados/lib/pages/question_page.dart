@@ -10,6 +10,11 @@ class QuestionPage extends StatefulWidget {
 }
 
 class _QuestionPageState extends State<QuestionPage> {
+  ResponseBox option_1 = new ResponseBox('');
+  ResponseBox option_2 = new ResponseBox('');
+  ResponseBox option_3 = new ResponseBox('');
+  ResponseBox option_4 = new ResponseBox('');
+  String teste = '';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,13 +42,13 @@ class _QuestionPageState extends State<QuestionPage> {
                 style: TextStyle(fontSize: 16, color: defaultColor),
               ),
               SizedBox(height: 20),
-              responseBox(),
+              option_1,
               SizedBox(height: 20),
-              responseBox(),
+              option_2,
               SizedBox(height: 20),
-              responseBox(),
+              option_3,
               SizedBox(height: 20),
-              responseBox(),
+              option_4,
               SizedBox(height: 20),
               responseButton()
             ],
@@ -64,31 +69,66 @@ class _QuestionPageState extends State<QuestionPage> {
           child: const Text('Responder'),
         ));
   }
+}
 
-  Container responseBox() {
-    bool isChecked = false;
+BoxDecoration getContainerDecoration(isChecked) {
+  if (isChecked) {
+    return BoxDecoration(
+        border: Border.all(color: defaultColor),
+        color: Color.fromRGBO(117, 140, 255, 0.3),
+        borderRadius: BorderRadius.circular(24));
+  }
+  return BoxDecoration(
+      border: Border.all(color: Colors.grey),
+      color: Colors.white,
+      borderRadius: BorderRadius.circular(24));
+}
 
-    return Container(
-      decoration: BoxDecoration(
-          border: Border.all(color: Colors.grey),
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(24)),
-      height: 110,
-      child: Column(
-        children: [
-          Row(children: [
-            Checkbox(
-              value: isChecked,
-              onChanged: (bool? value) {
-                setState(() {
-                  isChecked = value!;
-                });
-              },
-            ),
-            Text('Pablo Escobar')
-          ])
-        ],
-      ),
-    );
+class ResponseBox extends StatefulWidget {
+  String _response = '';
+  ResponseBox(value) {
+    this._response = value;
+  }
+  @override
+  _ResponseBoxState createState() => _ResponseBoxState();
+}
+
+class _ResponseBoxState extends State<ResponseBox> {
+  bool _isChecked = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+        onTap: () {
+          setState(() {
+            widget._response = 'ARROZ';
+          });
+        },
+        child: Container(
+          decoration: getContainerDecoration(_isChecked),
+          height: 110,
+          child: Padding(
+              padding: EdgeInsets.all(10),
+              child: Column(
+                children: [
+                  Row(children: [
+                    Container(
+                      height: 25,
+                      width: 25,
+                      child: Icon(
+                        Icons.check,
+                        color: defaultColor,
+                      ),
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          border: Border.all(color: defaultColor),
+                          borderRadius: BorderRadius.circular(8)),
+                    ),
+                    SizedBox(width: 3),
+                    Text(widget._response)
+                  ])
+                ],
+              )),
+        ));
   }
 }
