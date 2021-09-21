@@ -3,10 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:perguntados/pages/pages.dart';
 
 class ResultPage extends StatelessWidget {
-  const ResultPage({Key? key}) : super(key: key);
+  ResultPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final arguments = ModalRoute.of(context)?.settings.arguments;
     return Scaffold(
       backgroundColor: Color.fromRGBO(229, 233, 255, 1),
       appBar: AppBar(
@@ -43,7 +44,7 @@ class ResultPage extends StatelessWidget {
                       SizedBox(height: 30),
                       Center(
                           child: Text(
-                        '2/10',
+                        arguments.toString(),
                         style: TextStyle(
                           fontSize: 32,
                         ),

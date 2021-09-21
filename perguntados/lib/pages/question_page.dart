@@ -143,11 +143,20 @@ class WidgetsListsState extends State<WidgetsLists> {
 
   void nextQuestion() {
     setState(() {
+      if (atualIndex == 9) {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => ResultPage(),
+                settings:
+                    RouteSettings(name: '/result', arguments: correctCount)));
+      } else {
+        answered = false;
+        atualIndex++;
+      }
       for (int i = 0; i < 4; i++) {
         responseBoxSates[i] = 4;
       }
-      answered = false;
-      atualIndex++;
     });
   }
 
@@ -216,7 +225,48 @@ class ResponseBox extends StatefulWidget {
 }
 
 class _ResponseBoxState extends State<ResponseBox> {
-  BoxDecoration getContainerDecoration(isChecked) {
+  Container getCheckBox() {
+    Color checkColor = Colors.white;
+    Color borderColor = defaultColor;
+    Color iconColor = defaultColor;
+    Icon newIcon;
+
+    if (widget.atualState == 4) {
+      checkColor = Colors.white;
+      borderColor = defaultColor;
+      iconColor = defaultColor;
+      newIcon = Icon(Icons.check, color: iconColor);
+    } else if (widget.atualState == 2) {
+      checkColor = Colors.red;
+      borderColor = Colors.red;
+      iconColor = Colors.white;
+      newIcon = Icon(Icons.close, color: iconColor);
+    } else if (widget.atualState == 3) {
+      checkColor = Colors.green;
+      borderColor = Colors.green;
+      iconColor = Colors.white;
+      newIcon = Icon(Icons.check, color: iconColor);
+    } else {
+      checkColor = defaultColor;
+      borderColor = defaultColor;
+      iconColor = Colors.white;
+      newIcon = Icon(Icons.check, color: iconColor);
+    }
+
+    BoxDecoration boxDecoration = BoxDecoration(
+        color: checkColor,
+        border: Border.all(color: borderColor),
+        borderRadius: BorderRadius.circular(8));
+
+    return Container(
+      height: 25,
+      width: 25,
+      child: newIcon,
+      decoration: boxDecoration,
+    );
+  }
+
+  BoxDecoration getContainerDecoration() {
     if (widget.atualState == 1) {
       return BoxDecoration(
           border: Border.all(color: defaultColor),
@@ -248,25 +298,14 @@ class _ResponseBoxState extends State<ResponseBox> {
           });
         },
         child: Container(
-          decoration: getContainerDecoration(widget.atualState),
+          decoration: getContainerDecoration(),
           height: 110,
           child: Padding(
               padding: EdgeInsets.all(10),
               child: Column(
                 children: [
                   Row(children: [
-                    Container(
-                      height: 25,
-                      width: 25,
-                      child: Icon(
-                        Icons.check,
-                        color: defaultColor,
-                      ),
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          border: Border.all(color: defaultColor),
-                          borderRadius: BorderRadius.circular(8)),
-                    ),
+                    getCheckBox(),
                     SizedBox(width: 4),
                     Text(allQuestions[widget.atualIndex]
                         .responses[widget.widgetIndex])

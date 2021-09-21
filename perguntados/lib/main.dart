@@ -2,19 +2,27 @@ import 'package:flutter/material.dart';
 import 'pages/pages.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
+  MyApp({Key? key}) : super(key: key);
+  final GlobalKey<NavigatorState> _navigatorKey = GlobalKey<NavigatorState>();
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      navigatorKey: _navigatorKey,
+      initialRoute: '/',
+      routes: {
+        '/': (context) => LoginPage(),
+        '/start': (context) => StartPage(),
+        '/register': (context) => RegisterPage(),
+        '/question': (context) => QuestionPage(),
+        '/result': (context) => ResultPage(),
+      },
       title: 'Perguntados',
       theme: ThemeData(primaryColor: Color.fromRGBO(117, 140, 255, 1)),
-      home: const LoginPage(),
     );
   }
 }
