@@ -100,6 +100,18 @@ class WidgetsListsState extends State<WidgetsLists> {
   late int correctCount = 0;
   bool answered = false;
   List<int> responseBoxSates = [4, 4, 4, 4];
+
+  @override
+  void dispose() {
+    atualIndex = 0;
+    isSelected = false;
+    selectedOption = 12;
+    correctCount = 0;
+    answered = false;
+    responseBoxSates = [4, 4, 4, 4];
+    super.dispose();
+  }
+
   Widget returnButton(answered) {
     if (answered) {
       return NextQuestionButton(nextQuestion);
