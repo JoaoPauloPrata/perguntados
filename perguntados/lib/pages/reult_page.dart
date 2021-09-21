@@ -59,7 +59,11 @@ class ResultPage extends StatelessWidget {
                               decoration: TextDecoration.underline),
                         ),
                         onTap: () {
-                          debugPrint('Click');
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => StartPage(),
+                                  settings: RouteSettings(name: '/start')));
                         },
                       ))
                     ],
