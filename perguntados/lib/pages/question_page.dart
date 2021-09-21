@@ -29,12 +29,12 @@ ButtonStyle getButtonStyle(isSelected) {
   if (isSelected) {
     return ElevatedButton.styleFrom(
         primary: defaultColor,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(32)),
         textStyle: TextStyle(fontSize: 20));
   } else {
     return ElevatedButton.styleFrom(
         primary: Colors.grey,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(32)),
         textStyle: TextStyle(fontSize: 20));
   }
 }
@@ -76,7 +76,7 @@ class NextQuestionButton extends StatelessWidget {
           style: ElevatedButton.styleFrom(
               primary: defaultColor,
               shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(24)),
+                  borderRadius: BorderRadius.circular(32)),
               textStyle: TextStyle(fontSize: 20)),
           onPressed: () {
             nextQuestion();
@@ -187,7 +187,7 @@ class WidgetsListsState extends State<WidgetsLists> {
             style: TextStyle(fontSize: 16),
           ),
         ),
-        SizedBox(height: 20),
+        SizedBox(height: 64),
         Text(
           'Repostas',
           style: TextStyle(fontSize: 16, color: defaultColor),
