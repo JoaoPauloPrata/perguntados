@@ -121,22 +121,24 @@ class WidgetsListsState extends State<WidgetsLists> {
   }
 
   void markSelection(index) {
-    setState(() {
-      if (responseBoxSates[index] == 1) {
-        responseBoxSates[index] = 4;
-        isSelected = false;
-      } else {
-        responseBoxSates[index] = 1;
-        for (int i = 0; i < 4; i++) {
-          if (i != index) {
-            responseBoxSates[i] = 4;
+    if (answered == false) {
+      setState(() {
+        if (responseBoxSates[index] == 1) {
+          responseBoxSates[index] = 4;
+          isSelected = false;
+        } else {
+          responseBoxSates[index] = 1;
+          for (int i = 0; i < 4; i++) {
+            if (i != index) {
+              responseBoxSates[i] = 4;
+            }
           }
+          isSelected = true;
         }
-        isSelected = true;
-      }
-      debugPrint(index.toString());
-    });
-    selectedOption = index;
+        debugPrint(index.toString());
+      });
+      selectedOption = index;
+    }
   }
 
   void responseAction() {

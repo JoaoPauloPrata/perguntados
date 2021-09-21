@@ -44,7 +44,7 @@ class ResultPage extends StatelessWidget {
                       SizedBox(height: 30),
                       Center(
                           child: Text(
-                        arguments.toString(),
+                        arguments.toString() + '/10',
                         style: TextStyle(
                           fontSize: 32,
                         ),
